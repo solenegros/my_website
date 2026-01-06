@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    font-family: "Helvetica";
+    font-size: 18px;
+}
+header {
+    background-color: rgb(228, 94, 70);
+    color: white;
+    /* overflow:auto; */
+    padding: 40px;
+    /* padding-bottom: 30px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+main {
+    padding-left: 14%;
+    padding-right: 14%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    font-family: "Garamond";
+}
+footer {
+    background-color: rgb(228, 94, 70);
+    color: white;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+#logo {
+    font-family: Impact, fantasy;
+    font-size: 30px;
+}
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    /* width: fit-content; */
+    padding: 0%;
+}
+.nav {
+    margin-left: 30px;
+    margin-right: 30px;
+    /* transform: scale(1);  */
+    transition: transform 0.15s ease-in-out;
+}
+.nav:hover {
+    transform: scale(1.1);
+}
+
+header a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.main-page {
+    border: solid;
+    margin: 20px;
+    padding: 20px;
+}
+
+.box {
+    border: solid;
+    margin: 20px;
+    padding: 50px;
+}
+/* .main-page:first-child {
+    width: 35%;
+}
+.main-page:last-child {
+    width: 65%;
+}
+section {
+    display: flex;
+} */
+.logo {
+    height: 15px;
+    width: 15px;
+}
+.contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.contact h4 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.address {
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+.drop-down {
+    position: relative;
+}
+
+.drop-down #menu {
+    /* display: none; */
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.drop-down.down #menu {
+    /* display: block; */
+    width: max-content;
+
+    opacity: 1;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+}
+
+.drop-down.down ul {
+    display: block;
+    background-color: rgb(228, 94, 70);
+    padding: 5px;
+    border: solid;
+    border-color: black;
+    border-width: 1.5px;
+}
+
+.drop-down.down ul li {
+    padding: 5px;
+}
+
+#space {
+    height: 10px;
+}
+
+article {
+    margin-bottom: 55px;
+}
+
+.arrow {
+    background: rgb(228, 94, 70);
+    border-top: 1.5px solid black;
+    border-left: 1.5px solid black;
+    content: "";
+    transform: translateX(-50%) rotate(45deg);
+    height: 10px;
+    position: absolute;
+    width: 10px;
+    z-index: 1;
+    top: 4.5px;
+    left: 50%;
+}

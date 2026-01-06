@@ -1,0 +1,15 @@
+{
+    "abbr": {
+        "it": "italian",
+        "es": "spanish",
+        "la": "latin"
+    },
+    "data": {
+        "es2it": { "file": "es2it_seq2seq.pt" },
+        "es2la": { "file": "es2la_seq2seq.pt" },
+        "it2es": { "file": "it2es_seq2seq.pt" },
+        "it2la": { "file": "it2la_seq2seq.pt" },
+        "la2es": { "file": "la2es_seq2seq.pt" },
+        "la2it": { "file": "la2it_seq2seq.pt" }
+    }
+}

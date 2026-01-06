@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="static/style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        />
+    </head>
+    <body>
+        <header>
+            <a id="logo" href="/">Romance cognat prediction</a>
+        </header>
+        <main>
+            <div class="box">
+                <p>
+                    This page aims at giving the public the opportunity to
+                    experiment with the model. You can write a phonetic sequence
+                    (from a real or fictional word) and see what the model would
+                    output. However, you can only use phonemes from the list
+                    to be consistent with the phonology of the source language and with the phonemes present in the training dataset.
+                </p>
+                <p>Here is a resource to understand phonetic symbols: <a href="https://www.ipachart.com">https://www.ipachart.com</a></p>
+
+                <form method="POST">
+                    <div>
+                        <h1>Selection the model:</h1>
+                        <div style="margin: 5px;">
+                            <label for="source_lang">Source language:</label>
+                            <select name="source_lang" id="source_lang" required>
+                                <option value="">-- choose --</option>
+                                {% for opt in source_option %}
+                                <option value="{{ opt }}" {% if opt==selected_source %}selected{% endif %}>{{ opt }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div style="margin: 5px;>
+                            <label for="target_lang">Target language:</label>
+                            <select name="target_lang" id="target_lang" required>
+                                <option value="">-- choose --</option>
+                                {% for opt in target_option %}
+                                <option value="{{ opt }}" {% if opt==selected_target %}selected{% endif %}>{{ opt }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <button
+                            style="margin: 5px;
+                            type="submit"
+                            id="select_lang"
+                            name="action"
+                            value="select_lang"
+                        >
+                            Select
+                        </button>
+                    </div>
+
+                    {% if languages_selected %}
+                    <div id="model_use">
+                        <h1>Enter your text</h1>
+                        <input
+                            type="text"
+                            name="texte"
+                            id="texte"
+                            value="{{ texte }}"
+                            readonly
+                        />
+                        <button type="button" onclick="delPhone()"><-</button>
+                        <div style="margin-top: 10px">
+                            {% for phone in phones %}
+                            <button type="button" onclick="addPhone('{{ phone }}')">
+                                {{ phone }}
+                            </button>
+                            {% endfor %}
+                        </div>
+
+                        <br />
+
+                        <button type="submit" name="action" value="run_model">
+                            Evaluate
+                        </button>
+                            {% if res %}
+                            <h1>Result:</h1>
+                            <p style="font-family: 'Arial'">{{ res }}</p>
+                            {% endif %}
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+
+        </main>
+        <footer>
+            <p>© 2026 Solène</p>
+        </footer>
+        <script src="static/navbar.js" type="module"></script>
+        <script>
+            document
+                .getElementById("select_lang")
+                .addEventListener("click", function () {
+                    const src = document.getElementById("source_lang").value;
+                    const tgt = document.getElementById("target_lang").value;
+
+                    if (!src || !tgt) {
+                        event.preventDefault();
+                        alert("Please select both languages");
+                    } else if (src === tgt) {
+                        event.preventDefault();
+                        alert("Source and target must be different");
+                    } else {
+                        document.getElementById("model_use").style.display =
+                            "block";
+                    }
+                });
+        </script>
+        <script>
+            function addPhone(phone) {
+                const input = document.getElementById("texte");
+                input.value += `${phone} `;
+            }
+            function delPhone() {
+                const input = document.getElementById("texte");
+                let phonemes = input.value.trim().split(" ");
+                phonemes.pop();
+                input.value = phonemes.join(" ") + " ";
+                //input.value = input.value.substring(0, input.value.length - 2);
+            }
+        </script>
+    </body>
+</html>
