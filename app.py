@@ -42,7 +42,6 @@ def str2data(text, model):
 
 def evaluate(encoder, decoder, sentences, int2phone):
     with torch.no_grad():
-        # input_tensor = tensorFromSentence(input_lang, sentence)
         input_tensor = torch.unsqueeze(sentences, 0)
         encoder_outputs, encoder_hidden = encoder(input_tensor)
         decoder_outputs, decoder_hidden, decoder_attn = decoder(encoder_outputs, encoder_hidden)
